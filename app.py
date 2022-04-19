@@ -1,4 +1,5 @@
 from scrapper import Ineuronscrapper
+from flask_cors import CORS,cross_origin
 from logs import Logger
 from db import Mydb
 from flask import Flask, request, jsonify
@@ -16,6 +17,7 @@ app = Flask(__name__)
 
 
 @app.route("/course_categories", methods=["POST"])
+@cross_origin()
 def all_courses():
     if request.method == "POST":
         db_name = request.form["db_name"]
@@ -24,6 +26,7 @@ def all_courses():
 
 
 @app.route("/course_categories/course/details", methods=["POST"])
+@cross_origin()
 def specific_course():
     if request.method == "POST":
         db_name = request.form["db_name"]
